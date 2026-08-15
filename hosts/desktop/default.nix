@@ -7,8 +7,14 @@
     ./networking.nix
     ./environment.nix
 
-    ./programs
-    ./services
+    ../../modules/nixos/programs/zsh.nix
+    ../../modules/nixos/programs/steam.nix
+    ../../modules/nixos/programs/hyprland.nix
+
+    ../../modules/nixos/services/ntpd.nix
+    ../../modules/nixos/services/xserver.nix
+    ../../modules/nixos/services/mullvad.nix
+    ../../modules/nixos/services/pipewire.nix
   ];
 
   nix = {
