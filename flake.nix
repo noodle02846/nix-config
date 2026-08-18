@@ -1,5 +1,5 @@
 {
-  description = "Unified nix flake for nixos config";
+  description = "Unified nix flake nixos config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs =
@@ -20,6 +22,7 @@
       nixosConfigurations = {
         "desktop" = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/desktop ];
+          specialArgs = { inherit inputs; };
         };
       };
 
@@ -27,7 +30,7 @@
         "user" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
-          modules = [ ];
+          modules = [ ./users/user ];
           extraSpecialArgs = { inherit inputs; };
         };
       };
