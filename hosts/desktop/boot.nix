@@ -11,7 +11,7 @@
 
     consoleLogLevel = 3;
 
-    sysctl = {
+    kernel.sysctl = {
       # kernel
       "kernel.sysrq" = 4;
       "kernel.kptr_restrict" = 2;
