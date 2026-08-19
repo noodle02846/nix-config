@@ -8,7 +8,8 @@
     enable = true;
 
     # NOTE: Minimally decreases memory usage compared to full terminal windows
-    server.enable = true;
+    # NOTE: Does not seem to reliably enable upon startup
+    # server.enable = true;
 
     settings = {
       main = {

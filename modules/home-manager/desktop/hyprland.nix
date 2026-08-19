@@ -26,7 +26,7 @@
 
       settings = {
         mod._var = "SUPER";
-        terminal._var = "uwsm app -- footclient";
+        terminal._var = "uwsm app -- foot";
         menu._var = "hyprlauncher";
         browser._var = "uwsm app -- chromium";
 
