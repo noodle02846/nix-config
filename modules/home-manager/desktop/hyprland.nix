@@ -1,11 +1,4 @@
 { lib, pkgs, ... }: {
-  imports = [
-    ./hyprpaper.nix
-    ./waybar.nix
-    ./cursor.nix
-    ./anims.nix
-  ];
-
   wayland.windowManager.hyprland =
     let
       makeModBind =
