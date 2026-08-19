@@ -1,7 +1,9 @@
 { lib, ... }: {
   imports = [
     ./boot.nix
+    ./time.nix
     ./users.nix
+    ./console.nix
     ./hardware.nix
     ./security.nix
     ./networking.nix
