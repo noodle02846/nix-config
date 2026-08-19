@@ -63,7 +63,10 @@
 
     # Plugin settings
     plugins = {
-      lspconfig.enable = true;
+      # TODO: Review these two, as they are the same thing on the nixvim wiki
+      # WARN: Having both enabled leads to evaluation errors
+      lsp.enable = true;
+      # lspconfig.enable = true;
 
       lsp-lines.enable = true;
       lsp-status.enable = true;
