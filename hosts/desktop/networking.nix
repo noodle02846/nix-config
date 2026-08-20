@@ -14,8 +14,7 @@
 
     enableIPv6 = false;
 
-    # ERROR: Most likely cause of mullvad firewall networking failure
-    # nftables.enable = true;
+    nftables.enable = true;
     networkmanager.enable = false;
 
     dhcpcd = {
