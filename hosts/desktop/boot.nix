@@ -54,14 +54,15 @@
       "vm.mmap_rnd_compat_bits" = 16;
     };
 
-    plymouth = {
-      enable = true;
-      theme = "rings";
-
-      themePackages = with pkgs; [
-        adi1090x-plymouth-themes
-      ];
-    };
+    # NOTE: Comestic feature, didnt look as cool as i thought
+    # plymouth = {
+    #   enable = true;
+    #   theme = "rings";
+    #
+    #   themePackages = with pkgs; [
+    #     adi1090x-plymouth-themes
+    #   ];
+    # };
 
     loader = {
       systemd-boot = {
