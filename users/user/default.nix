@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    # Modules
     ../../modules/home-manager/fonts.nix
 
     ../../modules/home-manager/desktop/hyprland.nix
@@ -13,6 +14,9 @@
     ../../modules/home-manager/programs/posting.nix
 
     ../../modules/home-manager/programs/chromium.nix
+
+    # User
+    ./xdg.nix
   ];
 
   programs.home-manager.enable = true;
