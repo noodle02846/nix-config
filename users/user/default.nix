@@ -9,6 +9,7 @@
     ../../modules/home-manager/programs/foot.nix
     ../../modules/home-manager/programs/tldr.nix
     ../../modules/home-manager/programs/neovim.nix
+    ../../modules/home-manager/programs/posting.nix
 
     ../../modules/home-manager/programs/chromium.nix
   ];
