@@ -8,7 +8,7 @@
 
     settings = {
       editor = "nvim";
-      layout = "horizontal";
+      layout = "vertical";
       animation = "full";
     };
   };
