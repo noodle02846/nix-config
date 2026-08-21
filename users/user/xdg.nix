@@ -7,6 +7,7 @@
         homeDir = "${config.home.homeDirectory}";
       in
       {
+        enable = true;
         createDirectories = true;
 
         desktop = "${homeDir}/desktop";
