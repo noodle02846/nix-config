@@ -5,6 +5,7 @@
 
     # Prefer or enforce wayland applications
     # TODO: Review what this actually does underneath
-    xwayland.enable = false;
+    # HACK: Enable for now as it breaks steam
+    xwayland.enable = true;
   };
 }
