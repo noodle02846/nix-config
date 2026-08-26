@@ -5,6 +5,7 @@
 
     ../../modules/home-manager/desktop/hyprland.nix
 
+    ../../modules/home-manager/programs/pi.nix
     ../../modules/home-manager/programs/zsh.nix
     ../../modules/home-manager/programs/git.nix
     ../../modules/home-manager/programs/foot.nix
