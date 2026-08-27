@@ -7,7 +7,10 @@
         linger = true;
         isNormalUser = true;
         useDefaultShell = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "containers"
+        ];
       };
 
       svc = {
