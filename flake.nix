@@ -10,6 +10,8 @@
     };
 
     nixvim.url = "github:nix-community/nixvim";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs =

@@ -1,6 +1,14 @@
-{ lib, pkgs, ... }: {
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   wayland.windowManager.hyprland =
     let
+      system = pkgs.stdenv.hostPlatform.system;
+
       makeModBind =
         {
           keybind,
@@ -20,6 +28,10 @@
     in
     {
       enable = true;
+
+      # Use flake inputs
+      package = inputs.hyprland.packages.${system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
       # disabled due to UWSM
       systemd.enable = false;
@@ -225,8 +237,5 @@
           };
         };
       };
-
-      package = null;
-      portalPackage = null;
     };
 }
