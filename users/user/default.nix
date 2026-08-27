@@ -17,6 +17,8 @@
     ../../modules/home-manager/programs/discord.nix
     ../../modules/home-manager/programs/chromium.nix
 
+    ../../modules/home-manager/services/podman.nix
+
     # User
     ./xdg.nix
   ];
