@@ -35,6 +35,13 @@
           modules = [ ./users/user ];
           extraSpecialArgs = { inherit inputs; };
         };
+
+        "svc" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./users/svc ];
+          extraSpecialArgs = { inherit inputs; };
+        };
       };
     };
 }
