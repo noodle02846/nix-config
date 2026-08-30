@@ -1,6 +1,8 @@
 { ... }: {
   imports = [
     ../../modules/home-manager/services/podman.nix
+
+    ../../modules/home-manager/containers/gonic.nix
   ];
 
   programs.home-manager.enable = true;
