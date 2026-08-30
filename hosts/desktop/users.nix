@@ -18,6 +18,8 @@
         isNormalUser = true;
         useDefaultShell = true;
 
+        homeMode = "770";
+
         uid = 10000;
         group = "containers";
       };
