@@ -23,7 +23,20 @@
     {
       nixosConfigurations = {
         "desktop" = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/desktop ];
+          modules = [
+            ./hosts/desktop
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+
+                users.svc = ./users/svc;
+              };
+            }
+          ];
           specialArgs = { inherit inputs; };
         };
       };
@@ -36,12 +49,12 @@
           extraSpecialArgs = { inherit inputs; };
         };
 
-        "svc" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./users/svc ];
-          extraSpecialArgs = { inherit inputs; };
-        };
+        # "svc" = home-manager.lib.homeManagerConfiguration {
+        #   inherit pkgs;
+        #
+        #   modules = [ ./users/svc ];
+        #   extraSpecialArgs = { inherit inputs; };
+        # };
       };
     };
 }
