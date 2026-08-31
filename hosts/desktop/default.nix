@@ -40,7 +40,10 @@
 
     settings = {
       # Replace default "*", allowing all users
-      allowed-users = [ "@wheel" ];
+      allowed-users = [
+        "@wheel"
+        "svc"
+      ];
 
       # Enable flakes + flakes specific nix commands (e.g. nix develop)
       experimental-features = [
