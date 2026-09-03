@@ -5,6 +5,8 @@
     containers.gonic = {
       image = "sentriz/gonic:latest";
 
+      userNS = "keep-id";
+
       ports = [ "12100:8080" ];
       network = [ "gonic" ];
 
@@ -47,7 +49,7 @@
         GONIC_PODCAST_PATH = "/podcasts";
         GONIC_PLAYLISTS_PATH = "/playlists";
 
-        GONIC_LISTEN_ADDR = "127.0.0.1:8080";
+        GONIC_LISTEN_ADDR = "0.0.0.0:8080";
 
         GONIC_SCAN_INTERVAL = 60; # 60 Minutes
         GONIC_SCAN_WATCHER_ENABLED = true;
