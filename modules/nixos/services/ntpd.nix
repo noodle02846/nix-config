@@ -48,13 +48,6 @@
           mode = "server";
           address = "192.53.103.104";
         }
-
-        # Netherlands: time.nl
-        {
-          mode = "nts-pool";
-          address = "ntspool.time.nl";
-          ntp-version = "auto";
-        }
       ];
     };
   };
