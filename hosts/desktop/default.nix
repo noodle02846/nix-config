@@ -9,9 +9,10 @@
     ./networking.nix
     ./environment.nix
 
+    ../../modules/nixos/desktop/hyprland.nix
+
     ../../modules/nixos/programs/zsh.nix
     ../../modules/nixos/programs/steam.nix
-    ../../modules/nixos/programs/hyprland.nix
 
     ../../modules/nixos/services/ntpd.nix
     ../../modules/nixos/services/xserver.nix
