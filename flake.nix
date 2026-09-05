@@ -12,6 +12,11 @@
     nixvim.url = "github:nix-community/nixvim";
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    noctalia = {
+      # NOTE: This is using the cachix branch
+      url = "github:noctalia-dev/noctalia/cachix";
+    };
   };
 
   outputs =
