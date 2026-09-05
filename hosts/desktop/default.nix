@@ -9,6 +9,7 @@
     ./networking.nix
     ./environment.nix
 
+    ../../modules/nixos/desktop/uwsm.nix
     ../../modules/nixos/desktop/hyprland.nix
 
     ../../modules/nixos/programs/zsh.nix
