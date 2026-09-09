@@ -85,6 +85,17 @@
             command = "hl.dsp.window.resize()";
             mouseOnly = true;
           })
+          # workspace +/- switcher
+          (makeModBind {
+            keybind = "plus";
+            command = "hl.dsp.focus({ workspace = 'e+1' })";
+            mouseOnly = true;
+          })
+          (makeModBind {
+            keybind = "minus";
+            command = "hl.dsp.focus({ workspace = 'e-1' })";
+            mouseOnly = true;
+          })
         ]
         ++ (builtins.concatLists (
           builtins.genList (
@@ -100,16 +111,6 @@
               (makeModBind {
                 keybind = "SHIFT + ${toString ws}";
                 command = "hl.dsp.window.move({ workspace = ${toString ws} })";
-              })
-              (makeModBind {
-                keybind = "plus";
-                command = "hl.dsp.focus({ workspace = 'e+1' })";
-                mouseOnly = true;
-              })
-              (makeModBind {
-                keybind = "minus";
-                command = "hl.dsp.focus({ workspace = 'e-1' })";
-                mouseOnly = true;
               })
             ]
           ) 9
