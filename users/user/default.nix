@@ -4,6 +4,7 @@
     ../../modules/home-manager/fonts.nix
 
     ../../modules/home-manager/desktop/hyprland.nix
+    ../../modules/home-manager/desktop/noctalia.nix
 
     ../../modules/home-manager/programs/pi.nix
     ../../modules/home-manager/programs/zsh.nix
@@ -16,8 +17,6 @@
 
     ../../modules/home-manager/programs/discord.nix
     ../../modules/home-manager/programs/chromium.nix
-
-    ../../modules/home-manager/services/podman.nix
 
     # User
     ./xdg.nix
