@@ -38,8 +38,9 @@
 
       settings = {
         mod._var = "SUPER";
+        ipc._var = "noctalia msg ";
+
         terminal._var = "uwsm app -- foot";
-        menu._var = "hyprlauncher";
         browser._var = "uwsm app -- chromium";
 
         monitor = [
@@ -51,25 +52,58 @@
           }
         ];
 
+        workspace_rule = [
+          {
+            workspace = "1";
+            persistent = true;
+          }
+          {
+            workspace = "2";
+            persistent = true;
+          }
+          {
+            workspace = "3";
+            persistent = true;
+          }
+          {
+            workspace = "4";
+            persistent = true;
+          }
+          {
+            workspace = "5";
+            persistent = true;
+          }
+        ];
+
+        window_rule = [
+          {
+            match = {
+              class = "dev.noctalia.Noctalia";
+            };
+
+            float = true;
+            size = [
+              1080
+              920
+            ];
+          }
+        ];
+
         bind = [
-          {
-            _args = [
-              (lib.generators.mkLuaInline ''mod .. " + Escape"'')
-              (lib.generators.mkLuaInline "hl.dsp.window.close()")
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline ''mod .. " + Q"'')
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(terminal)")
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline ''mod .. " + M"'')
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")'')
-            ];
-          }
+          # essential binds
+          (makeModBind {
+            keybind = "Escape";
+            command = "hl.dsp.window.close()";
+          })
+          (makeModBind {
+            keybind = "Q";
+            command = "hl.dsp.exec_cmd(terminal)";
+          })
+          (makeModBind {
+            keybind = "M";
+            command = ''hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")'';
+          })
+          # app binds
           (makeModBind {
             keybind = "B";
             command = "hl.dsp.exec_cmd(browser)";
@@ -95,6 +129,19 @@
             keybind = "minus";
             command = "hl.dsp.focus({ workspace = 'e-1' })";
             mouseOnly = true;
+          })
+          # shell binds
+          (makeModBind {
+            keybind = "grave";
+            command = "hl.dsp.exec_cmd(ipc .. 'panel-toggle launcher')";
+          })
+          (makeModBind {
+            keybind = "tab";
+            command = "hl.dsp.exec_cmd(ipc .. 'panel-toggle control-center')";
+          })
+          (makeModBind {
+            keybind = "semicolon";
+            command = "hl.dsp.exec_cmd(ipc .. 'settings-toggle')";
           })
         ]
         ++ (builtins.concatLists (
@@ -171,8 +218,8 @@
           animations.enabled = true;
 
           general = {
-            gaps_in = 3;
-            gaps_out = 5;
+            gaps_in = 5;
+            gaps_out = 10;
 
             border_size = 1;
 
@@ -223,17 +270,17 @@
             inactive_opacity = 1;
 
             shadow = {
-              enabled = false;
-              range = 16;
-              render_power = 2;
+              enabled = true;
+              range = 4;
+              render_power = 3;
               color = "rgba(08080888)";
             };
 
             blur = {
               enabled = false;
-              size = 8;
-              passes = 4;
-              vibrancy = 0.5;
+              size = 3;
+              passes = 2;
+              vibrancy = 0.1696;
             };
           };
         };
