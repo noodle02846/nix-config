@@ -17,6 +17,7 @@
 
     ../../modules/home-manager/programs/discord.nix
     ../../modules/home-manager/programs/chromium.nix
+    ../../modules/home-manager/programs/prismlauncher.nix
 
     # User
     ./xdg.nix
