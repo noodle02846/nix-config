@@ -9,14 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim.url = "github:nix-community/nixvim";
-
     hyprland.url = "github:hyprwm/Hyprland";
 
-    noctalia = {
-      # NOTE: This is using the cachix branch
-      url = "github:noctalia-dev/noctalia/cachix";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs =
@@ -26,24 +23,22 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      nixosConfigurations = {
-        "desktop" = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/desktop
+      nixosConfigurations."desktop" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/desktop
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
 
-                users.svc = ./users/svc;
-              };
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
+              users.svc = ./users/svc;
+            };
+          }
+        ];
+        specialArgs = { inherit inputs; };
       };
 
       homeConfigurations = {
