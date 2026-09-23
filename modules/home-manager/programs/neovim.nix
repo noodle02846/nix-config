@@ -53,6 +53,7 @@
         nixd.enable = true;
         zls.enable = true;
         vls.enable = true;
+        just.enable = true;
         qmlls.enable = true;
         gopls.enable = true;
         gleam.enable = true;
@@ -115,6 +116,7 @@
             v = [ "v" ];
             gleam = [ "gleam" ];
             qml = [ "qmlformat" ];
+            just = [ "just" ];
           };
         };
       };
