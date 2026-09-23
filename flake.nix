@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,44 +19,55 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in
-    {
-      nixosConfigurations."desktop" = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hosts/desktop
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { withSystem, ... }: {
+        systems = [ "x86_64-linux" ];
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
+        perSystem = { pkgs, ... }: {
+          devShells.default = pkgs.mkShellNoCC {
+            buildInputs = with pkgs; [
+              # Runners, LSP, Formatters, and Linters
 
-              users.svc = ./users/svc;
-            };
-          }
-        ];
-        specialArgs = { inherit inputs; };
-      };
+              nixd
+              nixfmt
+              statix
 
-      homeConfigurations = {
-        "user" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./users/user ];
-          extraSpecialArgs = { inherit inputs; };
+              just
+              just-lsp
+            ];
+          };
         };
 
-        # "svc" = home-manager.lib.homeManagerConfiguration {
-        #   inherit pkgs;
-        #
-        #   modules = [ ./users/svc ];
-        #   extraSpecialArgs = { inherit inputs; };
-        # };
-      };
-    };
+        flake = {
+          nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
+            modules = [
+              ./hosts/desktop
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs; };
+
+                  users.svc = ./users/svc;
+                };
+              }
+            ];
+
+            specialArgs = { inherit inputs; };
+          };
+
+          homeConfigurations."user" = withSystem "x86_64-linux" (
+            { pkgs, ... }:
+            inputs.home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+
+              modules = [ ./users/user ];
+              extraSpecialArgs = { inherit inputs; };
+            }
+          );
+        };
+      }
+    );
 }
