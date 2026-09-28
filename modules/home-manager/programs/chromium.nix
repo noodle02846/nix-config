@@ -30,7 +30,7 @@
         "DevToolsGenAiSettings": 2,
         "Disable3DAPIs": true,
         "DnsOverHttpsMode": "secure",
-        "DnsOverHttpsTemplates": "https://family.dns.mullvad.net/dns-query",
+        "DnsOverHttpsTemplates": "https://dns.quad9.net/dns-query",
         "EnableMediaRouter": false,
         "ExtensionAllowedTypes": [
             "extension",
