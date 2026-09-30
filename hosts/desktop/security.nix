@@ -23,12 +23,17 @@
 
     # SUID/Elevation wrappers
     sudo.enable = false;
-    run0.wheelNeedsPassword = true;
 
-    doas = {
+    run0 = {
       enable = true;
+      enableSudoAlias = true;
       wheelNeedsPassword = true;
+
+      persistentAuth.enable = true;
     };
+
+    # Polkit
+    polkit.settings.Polkitd.ExpirationSeconds = 60;
 
     # TODO: Setup AppArmor MAC with granular profiles
     # apparmor = {};
