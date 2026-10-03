@@ -6,7 +6,6 @@
     ../../modules/home-manager/desktop/hyprland.nix
     ../../modules/home-manager/desktop/noctalia.nix
 
-    ../../modules/home-manager/programs/pi.nix
     ../../modules/home-manager/programs/nh.nix
     ../../modules/home-manager/programs/zsh.nix
     ../../modules/home-manager/programs/git.nix
@@ -15,6 +14,7 @@
     ../../modules/home-manager/programs/neovim.nix
     ../../modules/home-manager/programs/direnv.nix
     ../../modules/home-manager/programs/posting.nix
+    ../../modules/home-manager/programs/pi-coding-agent.nix
 
     ../../modules/home-manager/programs/discord.nix
     ../../modules/home-manager/programs/chromium.nix
