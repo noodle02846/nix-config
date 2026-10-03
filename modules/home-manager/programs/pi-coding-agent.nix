@@ -1,10 +1,16 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    pi-coding-agent
-  ];
-
   programs.pi-coding-agent = {
     enable = true;
+    package = pkgs.pi-coding-agent;
+
+    extraPackages = with pkgs; [
+      # Runtimes
+      nodejs
+      python3
+
+      # Commands
+      jq
+    ];
 
     settings = {
       # Providers
