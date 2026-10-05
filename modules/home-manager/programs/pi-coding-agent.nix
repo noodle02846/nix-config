@@ -20,6 +20,7 @@
 
       # UI
       theme = "dark";
+      tuiMode = "fullscreen";
       externalEditor = "$EDITOR";
 
       # Telemetry
@@ -39,11 +40,15 @@
           mcpServers = {
             "web-search-exa-ai" = {
               url = "https://mcp.exa.ai/mcp";
+
+              exposure = "direct";
             };
 
             "nix-docs" = {
               command = "uvx";
               args = [ "mcp-nixos" ];
+
+              exposure = "direct";
             };
           };
         }
