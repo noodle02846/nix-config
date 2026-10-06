@@ -55,6 +55,13 @@
         enabled = true;
         fill_mode = "crop";
       };
+
+      nightlight = {
+        enable = true;
+
+        temperature_day = 6000;
+        temperature_night = 4500;
+      };
     };
   };
 }
