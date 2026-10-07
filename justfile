@@ -1,11 +1,14 @@
+default:
+    @just --list
+
 update:
-    nix flake update
+    @nix flake update
 
 check:
-    nix flake check
+    @nix flake check
 
 home:
-    nh home switch
+    @nh home switch
 
 switch:
-    nh os switch
+    @nh os switch
