@@ -4,6 +4,7 @@
     ./time.nix
     ./users.nix
     ./console.nix
+    ./systemd.nix
     ./hardware.nix
     ./security.nix
     ./networking.nix
