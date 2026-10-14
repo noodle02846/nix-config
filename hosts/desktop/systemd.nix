@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ../../modules/systemd/system/acpid.nix
+    ../../modules/systemd/system/ckb-next.nix
   ];
 
   systemd = {
