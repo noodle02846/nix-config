@@ -32,7 +32,10 @@
         };
 
         launcher = {
+          layout = "simple";
           categories = false;
+
+          width = 480;
 
           compact = true;
           app_grid = true;
