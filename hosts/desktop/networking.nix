@@ -40,6 +40,7 @@
           # 22 # SSH port
           # 8096 # Jellyfin web port
           12100 # Custom gonic (Open Subsonic) server port
+          12110 # Custom silverbullet (Markdown wiki) server port
         ];
       };
     };
