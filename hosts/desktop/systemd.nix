@@ -6,6 +6,7 @@
 
   systemd = {
     # NOTE: Disable coredumps to prevent harmful log exposure
-    coredump.enable = false;
+    # HACK: Keep enabled to prevent coredumps being sent to my home folder
+    # coredump.enable = true;
   };
 }
