@@ -44,6 +44,8 @@
               just-lsp
             ];
           };
+
+          formatter = pkgs.nixfmt;
         };
 
         flake = {
