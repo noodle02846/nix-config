@@ -48,16 +48,15 @@
         "svc"
       ];
 
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+
       # Enable flakes + flakes specific nix commands (e.g. nix develop)
       experimental-features = [
         "nix-command"
         "flakes"
-      ];
-
-      # Cachix settings
-      trusted-users = [
-        "root"
-        "@wheel"
       ];
     };
   };
