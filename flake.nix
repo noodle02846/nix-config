@@ -9,17 +9,13 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # NOTE: used for Hyprland/Nixvim
+    # NOTE: used for Nixvim
     systems.url = "github:nix-systems/default/main";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     nixvim = {
       url = "github:nix-community/nixvim";
