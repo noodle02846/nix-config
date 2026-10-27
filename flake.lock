@@ -455,7 +455,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_2"
+        "systems": [
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1792203519,
@@ -519,7 +521,8 @@
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
-        "noctalia": "noctalia"
+        "noctalia": "noctalia",
+        "systems": "systems_2"
       }
     },
     "systems": {
@@ -538,7 +541,6 @@
       }
     },
     "systems_2": {
-      "flake": false,
       "locked": {
         "lastModified": 1791244623,
         "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",
@@ -549,7 +551,7 @@
       },
       "original": {
         "owner": "nix-systems",
-        "ref": "future-26.11",
+        "ref": "main",
         "repo": "default",
         "type": "github"
       }

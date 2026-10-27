@@ -9,6 +9,9 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    # NOTE: used for Hyprland/Nixvim
+    systems.url = "github:nix-systems/default/main";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,8 +23,12 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 
@@ -29,7 +36,7 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
       { withSystem, ... }: {
-        systems = [ "x86_64-linux" ];
+        systems = import inputs.systems;
 
         perSystem = { pkgs, ... }: {
           devShells.default = pkgs.mkShellNoCC {
