@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
     ./boot.nix
     ./time.nix
@@ -23,6 +23,8 @@
   ];
 
   nix = {
+    package = pkgs.lix;
+
     gc = {
       automatic = true;
       persistent = true;
