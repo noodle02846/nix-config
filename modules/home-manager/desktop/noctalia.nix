@@ -61,6 +61,13 @@
         temperature_day = 6000;
         temperature_night = 4500;
       };
+
+      weather = {
+        enabled = true;
+        refresh_minutes = 5;
+        units = "imperial";
+        effects = true;
+      };
     };
   };
 }
