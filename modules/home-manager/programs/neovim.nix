@@ -8,6 +8,7 @@
 
     # Program options
     defaultEditor = true;
+    nixpkgs.useGlobalPackages = true;
 
     # NOTE: better to mentally always do nvim for neovim
     # viAlias = true;
