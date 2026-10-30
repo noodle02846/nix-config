@@ -4,7 +4,10 @@
       "intel_idle.max_cstate=1" # Fix kernel panic issue from hardware defects
     ];
 
-    kernelModules = [ ];
+    kernelModules = [
+      "x_tables"
+      "wireguard"
+    ];
     kernelPackages = pkgs.linuxPackages_latest;
 
     kexec.enable = false;
