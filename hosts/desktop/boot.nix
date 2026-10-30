@@ -5,9 +5,31 @@
     ];
 
     kernelModules = [
-      "x_tables"
+      # Preload modules for Podman
+      "veth"
+      "bridge"
+      "br_netfilter"
+
+      # Preload modules for Netavark
+      "nft_compat"
+
+      "xt_comment"
+      "xt_conntrack"
+      "xt_MASQUERADE"
+
+      "xt_nat"
+      "xt_mark"
+      "xt_tcpudp"
+      "xt_addrtype"
+      "xt_multiport"
+
+      # Preload wireguard for Mullvad
       "wireguard"
+
+      # Preload tun module for Mullvad and Podman
+      "tun"
     ];
+
     kernelPackages = pkgs.linuxPackages_latest;
 
     kexec.enable = false;
