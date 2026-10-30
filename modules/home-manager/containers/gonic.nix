@@ -22,11 +22,14 @@
       ];
 
       extraConfig = {
+        Unit = {
+          StartLimitBurst = 3;
+          StartLimitIntervalSec = 60;
+        };
+
         Service = {
           CPUQuota = "150%";
           RestartSec = 30;
-          StartLimitBurst = 3;
-          StartLimitIntervalSec = 60;
         };
 
         Container = {
@@ -38,7 +41,7 @@
           NoNewPrivileges = true;
 
           # Resource allocation
-          Memory = "128M";
+          Memory = "256M";
           PidsLimit = 64;
         };
       };
