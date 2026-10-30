@@ -11,17 +11,12 @@
       "br_netfilter"
 
       # Preload modules for Netavark
-      "nft_compat"
-
-      "xt_comment"
-      "xt_conntrack"
-      "xt_MASQUERADE"
-
-      "xt_nat"
-      "xt_mark"
-      "xt_tcpudp"
-      "xt_addrtype"
-      "xt_multiport"
+      "nft_ct"
+      "nft_nat"
+      "nft_masq"
+      "nft_fib_ipv4"
+      "nft_fib_ipv6"
+      "nft_chain_nat"
 
       # Preload tun module for Mullvad and Podman
       "tun"
