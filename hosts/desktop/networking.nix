@@ -6,10 +6,6 @@
       # Quad9
       "9.9.9.9"
       "149.112.112.112"
-
-      # Mullvad DNS
-      "192.242.2.6" # extended.dns.mullvad.net
-      "192.242.2.4" # base.dns.mullvad.net
     ];
 
     enableIPv6 = false;
