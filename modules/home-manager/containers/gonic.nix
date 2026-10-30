@@ -3,7 +3,7 @@
     networks.gonic.driver = "bridge";
 
     containers.gonic = {
-      image = "sentriz/gonic:latest";
+      image = "docker.io/sentriz/gonic:v0.23.0@sha256:a6f6a9a02f4af33ac4d02568f2ad30a8c809bc3d0ec14decb77ba6d0077cf2d4";
 
       userNS = "keep-id";
 
