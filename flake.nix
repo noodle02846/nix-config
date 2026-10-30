@@ -9,8 +9,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # NOTE: used for Nixvim
-    systems.url = "github:nix-systems/default/main";
+    systems = {
+      url = "github:nix-systems/default/main";
+      flake = false;
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
