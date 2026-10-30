@@ -23,9 +23,6 @@
       "xt_addrtype"
       "xt_multiport"
 
-      # Preload wireguard for Mullvad
-      "wireguard"
-
       # Preload tun module for Mullvad and Podman
       "tun"
     ];

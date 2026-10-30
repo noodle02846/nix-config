@@ -2,6 +2,7 @@
   imports = [
     ../../modules/systemd/system/acpid.nix
     ../../modules/systemd/system/ckb-next.nix
+    ../../modules/systemd/system/mullvad-daemon.nix
   ];
 
   systemd = {
