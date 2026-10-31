@@ -55,7 +55,12 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partuuid/97af6585-79ab-4eaa-8a3f-5bd599d03e04";
+      randomEncryption.enable = true;
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
