@@ -87,9 +87,13 @@
     loader = {
       systemd-boot = {
         enable = true;
+        editor = false;
         configurationLimit = 10;
+
+        bootCounting.enable = true;
       };
 
+      timeout = 0;
       efi.canTouchEfiVariables = true;
     };
   };
