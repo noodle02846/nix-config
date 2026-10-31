@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   imports = [
     ../../modules/systemd/system/acpid.nix
     ../../modules/systemd/system/ckb-next.nix
@@ -14,6 +14,12 @@
         Storage = "none";
         ProcessSizeMax = 0;
       };
+    };
+
+    # NOTE: Service account does not need to be ready to login to
+    services.home-manager-svc = {
+      before = lib.mkForce [ "user@10000.service" ];
+      wantedBy = lib.mkForce [ "user@10000.service" ];
     };
   };
 }
