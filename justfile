@@ -12,3 +12,6 @@ home:
 
 switch:
     @nh os switch
+
+generate-git-review out="/tmp/git-review.txt":
+    @sh scripts/git-review.sh "{{ out }}"
