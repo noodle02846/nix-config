@@ -23,6 +23,9 @@
 
       # Preload packet module for dhcpcd
       "af_packet"
+
+      # Preload zram module for swap
+      "zram"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
