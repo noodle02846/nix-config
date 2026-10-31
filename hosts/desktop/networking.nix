@@ -15,6 +15,7 @@
 
     dhcpcd = {
       enable = true;
+      wait = "background";
       allowSetuid = false;
 
       extraConfig = ''

@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   services.ntpd-rs = {
     enable = true;
     useNetworkingTimeServers = false;
@@ -50,5 +50,11 @@
         }
       ];
     };
+  };
+
+  # NOTE: fix ntpd-rs gating `graphical.target` when booting
+  systemd.services.ntpd-rs = {
+    after = lib.mkForce [ "network.target" ];
+    wants = lib.mkForce [ "network.target" ];
   };
 }

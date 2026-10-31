@@ -20,6 +20,9 @@
 
       # Preload tun module for Mullvad and Podman
       "tun"
+
+      # Preload packet module for dhcpcd
+      "af_packet"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
