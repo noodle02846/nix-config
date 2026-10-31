@@ -6,8 +6,14 @@
   ];
 
   systemd = {
-    # NOTE: Disable coredumps to prevent harmful log exposure
-    # HACK: Keep enabled to prevent coredumps being sent to my home folder
-    # coredump.enable = true;
+    # NOTE: Enable coredumps and set storage to `none` to prevent log exposure
+    coredump = {
+      enable = true;
+
+      settings.Coredump = {
+        Storage = "none";
+        ProcessSizeMax = 0;
+      };
+    };
   };
 }
