@@ -1,4 +1,4 @@
-#1/usr/bin/sh
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -9,15 +9,15 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not inside a git wor
 cd "$(git rev-parse --show-toplevel)"
 
 # ---- knobs (env-overridable) ---------------------------------------------
-OUT="${1:-${OUT:-/tmp/review.txt}}"   # target file
-COMMITS="${COMMITS:-15}"             # detailed log --stat entries
-ONELINE="${ONELINE:-50}"             # compact history length
-PATCHES="${PATCHES:-5}"              # format-patch, last N commits (0 = off)
-INCLUDE_LOCK="${INCLUDE_LOCK:-0}"    # 1 = dump flake.lock verbatim
-MAX_BYTES="${MAX_BYTES:-262144}"     # skip single files larger than this
+OUT="${1:-${OUT:-/tmp/review.txt}}"     # target file
+COMMITS="${COMMITS:-15}"                # detailed log --stat entries
+ONELINE="${ONELINE:-50}"                # compact history length
+PATCHES="${PATCHES:-10}"                # format-patch, last N commits (0 = off)
+INCLUDE_LOCK="${INCLUDE_LOCK:-0}"       # 1 = dump flake.lock verbatim
+MAX_BYTES="${MAX_BYTES:-262144}"        # skip single files larger than this
 
 # ---- which files to dump ---------------------------------------------------
-GLOBS=('*.nix' '.sops.yaml' 'justfile' 'Justfile' '*.md')
+GLOBS=('*.nix' '.sops.yaml' 'justfile' 'Justfile' '*.md' '*.sh')
 EXCLUDES=('secrets/*' '*.age' '*.lock' 'flake.lock')  # adjust secrets/* to your layout
 
 PATHSPECS=()

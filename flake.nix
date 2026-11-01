@@ -47,6 +47,8 @@
 
               just
               just-lsp
+
+              jq
             ];
           };
 
