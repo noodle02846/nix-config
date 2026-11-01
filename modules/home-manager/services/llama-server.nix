@@ -43,11 +43,15 @@
     };
   };
 
-  systemd.user.services.llama-server.Service = {
-    Environment = [
-      "GGML_CUDA_ENABLE_UNFIED_MEMORY=1"
-    ];
+  systemd.user = {
+    settings.Manager.DefaultLimitMEMLOCK = "infinity";
 
-    LimitMEMLOCK = "infinity";
+    services.llama-server.Service = {
+      Environment = [
+        "GGML_CUDA_ENABLE_UNIFIED_MEMORY=1"
+      ];
+
+      LimitMEMLOCK = "infinity";
+    };
   };
 }
