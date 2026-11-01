@@ -42,4 +42,12 @@
       threads-batch = 6;
     };
   };
+
+  systemd.user.services.llama-server.Service = {
+    Environment = [
+      "GGML_CUDA_ENABLE_UNFIED_MEMORY=1"
+    ];
+
+    LimitMEMLOCK = "infinity";
+  };
 }
