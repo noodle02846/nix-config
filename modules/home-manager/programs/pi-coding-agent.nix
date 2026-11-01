@@ -1,7 +1,10 @@
 { pkgs, config, ... }: {
   programs.pi-coding-agent = {
     enable = true;
-    package = pkgs.pi-coding-agent;
+    context = ''
+      * When the operator requests separate tool calls, never batch them.
+      * Never batch a call that reads file X with a call that writes or produces X.
+    '';
 
     extraPackages = with pkgs; [
       # Runtimes
