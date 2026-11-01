@@ -4,9 +4,9 @@
 
     users = {
       user = {
-        linger = true;
         isNormalUser = true;
         useDefaultShell = true;
+
         extraGroups = [
           "wheel"
           "containers"
