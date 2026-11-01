@@ -54,14 +54,26 @@ in
                 ]
             ) cfg.commandLineArgs
           );
+
+          escapeSystemdExecArg =
+            arg:
+            let
+              s = toString arg;
+              full = lib.replaceStrings [ "%" "$" ] [ "%%" "$$" ] (builtins.toJSON s);
+            in
+            if lib.match "[[:alnum:],._+=:@/-]+" s != null then s else full;
+
+          escapeSystemdExecArgs = lib.concatMapStringsSep " " escapeSystemdExecArg;
         in
         {
           Type = "exec";
-          ExecStart = [
-            (lib.getExe cfg.package)
-            "server"
-          ]
-          ++ args;
+          ExecStart = escapeSystemdExecArgs (
+            [
+              (lib.getExe cfg.package)
+              "server"
+            ]
+            ++ args
+          );
 
           Restart = "on-failure";
           RestartSec = 5;

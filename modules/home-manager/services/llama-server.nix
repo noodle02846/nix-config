@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ../../custom/llama-server.nix
   ];
@@ -11,7 +11,8 @@
       # llama.cpp
       offline = true;
       log-verbosity = 3;
-      models-dir = "~/templates/models";
+
+      models-dir = "${config.home.homeDirectory}/templates/models";
 
       port = 1234;
       host = "127.0.0.1";
