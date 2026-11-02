@@ -72,6 +72,11 @@
       "net.ipv4.conf.all.rp_filter" = 1;
       "net.ipv4.conf.default.rp_filter" = 1;
 
+      # net.ipv4.conf.*.src_valid_mark
+      # NOTE: Supposedly fixes mullvad daemon error
+      "net.ipv4.conf.all.src_valid_mark" = 1;
+      "net.ipv4.conf.default.src_valid_mark" = 1;
+
       # vm
       "vm.mmap_rnd_bits" = 32;
       "vm.mmap_rnd_compat_bits" = 16;
