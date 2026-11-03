@@ -26,6 +26,9 @@
 
       # Preload zram module for swap
       "zram"
+
+      # Filesystems
+      "ntfs3"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
