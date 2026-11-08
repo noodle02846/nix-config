@@ -44,7 +44,7 @@
       "kernel.dmesg_restrict" = 1;
 
       # kernel.yama
-      "kernel.yama.ptrace_scope" = 2;
+      "kernel.yama.ptrace_scope" = 1;
 
       # net.ipv4
       # TODO: Review modern day security benefits and performance losses
