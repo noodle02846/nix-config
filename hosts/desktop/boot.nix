@@ -2,6 +2,12 @@
   boot = {
     kernelParams = [
       "intel_idle.max_cstate=1" # Fix kernel panic issue from hardware defects
+
+      # Silent boot
+      "quiet"
+      "udev.log_priority=3"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
     ];
 
     kernelModules = [
