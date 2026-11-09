@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   boot.kernel.sysctl = {
     # NOTE: Recommended zram swap settings
     "vm.swappiness" = 200;

@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   security = {
     # Extra kernel protections
     lockKernelModules = true;

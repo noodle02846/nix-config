@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   # REMOVED:
   # "BlockExternalExtensions": true
   home.file.".config/chromium/policies/managed/policy-hardened-guide-autogen-config.json".text = ''

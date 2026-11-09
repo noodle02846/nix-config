@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   systemd.services.acpid = {
     serviceConfig = {
       ProtectSystem = "strict";
