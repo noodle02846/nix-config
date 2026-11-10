@@ -8,6 +8,9 @@
       "udev.log_priority=3"
       "rd.udev.log_level=3"
       "rd.systemd.show_status=auto"
+
+      # Plymouth boot theme fix
+      "plymouth.use-simpledrm"
     ];
 
     kernelModules = [
@@ -91,15 +94,52 @@
       "vm.mmap_rnd_compat_bits" = 16;
     };
 
-    # NOTE: Comestic feature, didnt look as cool as i thought
-    # plymouth = {
-    #   enable = true;
-    #   theme = "rings";
-    #
-    #   themePackages = with pkgs; [
-    #     adi1090x-plymouth-themes
-    #   ];
-    # };
+    plymouth =
+      let
+        ecorpGlitch = pkgs.stdenvNoCC.mkDerivation {
+          pname = "plymouth-theme-ecorp-glitch";
+          version = "0-unstable-2026-08-14";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "RuVl";
+            repo = "plymouth-theme-ecorp-glitch-luks";
+            rev = "62749e530fc74e9f6a199cbb551a49e2019a3f7b";
+            hash = "sha256-ZU6fQwRvMC4OSWadoO23IOiKqqfSn7+WRH1q+IV2Z+w=";
+          };
+
+          dontBuild = true;
+          dontConfigure = true;
+
+          installPhase = ''
+            runHook preInstall
+
+            themeDir="$out/share/plymouth/themes/ecorp-glitch-luks"
+            mkdir -p "$themeDir"
+
+            # Copy only the theme itself, not README.md, demo.gif or install.sh.
+            cp "$src"/{*.png,*.script,*.plymouth} "$themeDir/"
+
+            substituteInPlace "$themeDir/ecorp-glitch-luks.plymouth" \
+              --replace-fail \
+                "/usr/share/plymouth/themes/ecorp-glitch-luks" \
+                "$themeDir"
+
+            runHook postInstall
+          '';
+        };
+      in
+      {
+        enable = true;
+
+        theme = "ecorp-glitch-luks";
+        themePackages = [ ecorpGlitch ];
+
+        showDelay = 0;
+
+        extraConfig = ''
+          UseSimpledrm=1
+        '';
+      };
 
     loader = {
       systemd-boot = {
