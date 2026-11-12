@@ -11,22 +11,25 @@ _: {
     # Used for PipeWire
     rtkit.enable = true;
 
-    # Implicitly trust all guests
-    virtualisation.flushL1DataCache = "never";
+    # NOTE: Untrusted guests planned
+    virtualisation.flushL1DataCache = "always";
 
     # SUID/Elevation wrappers
     sudo.enable = false;
 
     run0 = {
       enable = true;
-      enableSudoAlias = true;
       wheelNeedsPassword = true;
 
+      sudo-shim.enable = true;
       persistentAuth.enable = true;
     };
 
     # Polkit
-    polkit.settings.Polkitd.ExpirationSeconds = 60;
+    polkit = {
+      enable = true;
+      settings.Polkitd.ExpirationSeconds = 60;
+    };
 
     # TODO: Setup AppArmor MAC with granular profiles
     # apparmor = {};
