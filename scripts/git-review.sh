@@ -9,7 +9,7 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not inside a git wor
 cd "$(git rev-parse --show-toplevel)"
 
 # ---- knobs (env-overridable) ---------------------------------------------
-OUT="${1:-${OUT:-/tmp/review.txt}}"     # target file
+OUT="${1:-${OUT:-/tmp/git-review.txt}}"     # target file
 COMMITS="${COMMITS:-15}"                # detailed log --stat entries
 ONELINE="${ONELINE:-50}"                # compact history length
 PATCHES="${PATCHES:-10}"                # format-patch, last N commits (0 = off)
