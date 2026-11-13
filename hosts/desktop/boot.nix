@@ -42,6 +42,12 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
 
+    blacklistedKernelModules = [
+      # Unused Wifi drivers and modules
+      "iwlwifi"
+      "iwlmvm"
+    ];
+
     kexec.enable = false;
 
     consoleLogLevel = 3;
