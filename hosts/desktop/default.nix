@@ -51,10 +51,7 @@
         "svc"
       ];
 
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
+      trusted-users = [ "root" ];
 
       # Enable flakes + flakes specific nix commands (e.g. nix develop)
       experimental-features = [
