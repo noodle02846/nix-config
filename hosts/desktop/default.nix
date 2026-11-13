@@ -71,10 +71,23 @@
       "steam"
       "steam-unwrapped"
 
+      # Discord related packages
+      "discord"
+      "discord-unwrapped"
+
       # NVIDIA specific drivers and utilities/programs
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+
+      # NVIDIA CUDA libraries
+      "cccl"
+      "libnvvm"
+      "libcublas"
+      "cuda_crt"
+      "cuda_nvcc"
+      "cuda_nvrtc"
+      "cuda_cudart"
     ];
 
   system.stateVersion = "26.05";
