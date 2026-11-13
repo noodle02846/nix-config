@@ -66,7 +66,10 @@
                   useUserPackages = true;
                   extraSpecialArgs = { inherit inputs; };
 
-                  users.svc = ./users/svc;
+                  users = {
+                    svc = ./users/svc;
+                    user = ./users/user;
+                  };
                 };
               }
             ];
@@ -74,15 +77,15 @@
             specialArgs = { inherit inputs; };
           };
 
-          homeConfigurations."user" = withSystem "x86_64-linux" (
-            { pkgs, ... }:
-            inputs.home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-
-              modules = [ ./users/user ];
-              extraSpecialArgs = { inherit inputs; };
-            }
-          );
+          # homeConfigurations."user" = withSystem "x86_64-linux" (
+          #   { pkgs, ... }:
+          #   inputs.home-manager.lib.homeManagerConfiguration {
+          #     inherit pkgs;
+          #
+          #     modules = [ ./users/user ];
+          #     extraSpecialArgs = { inherit inputs; };
+          #   }
+          # );
         };
       }
     );
