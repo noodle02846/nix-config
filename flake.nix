@@ -32,61 +32,47 @@
 
   outputs =
     inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      { withSystem, ... }: {
-        systems = import inputs.systems;
+    flake-parts.lib.mkFlake { inherit inputs; } (_: {
+      systems = import inputs.systems;
 
-        perSystem = { pkgs, ... }: {
-          devShells.default = pkgs.mkShellNoCC {
-            buildInputs = with pkgs; [
-              # Runners, LSP, Formatters, and Linters
+      perSystem = { pkgs, ... }: {
+        devShells.default = pkgs.mkShellNoCC {
+          buildInputs = with pkgs; [
+            # Runners, LSP, Formatters, and Linters
 
-              nixd
-              nixfmt
-              statix
+            nixd
+            nixfmt
+            statix
 
-              just
-              just-lsp
+            just
+            just-lsp
 
-              jq
-            ];
-          };
-
-          formatter = pkgs.nixfmt;
+            jq
+          ];
         };
 
-        flake = {
-          nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
-            modules = [
-              ./hosts/desktop
-              inputs.home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs; };
+        formatter = pkgs.nixfmt;
+      };
 
-                  users = {
-                    svc = ./users/svc;
-                    user = ./users/user;
-                  };
-                };
-              }
-            ];
+      flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/desktop
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
 
-            specialArgs = { inherit inputs; };
-          };
+              users = {
+                svc = ./users/svc;
+                user = ./users/user;
+              };
+            };
+          }
+        ];
 
-          # homeConfigurations."user" = withSystem "x86_64-linux" (
-          #   { pkgs, ... }:
-          #   inputs.home-manager.lib.homeManagerConfiguration {
-          #     inherit pkgs;
-          #
-          #     modules = [ ./users/user ];
-          #     extraSpecialArgs = { inherit inputs; };
-          #   }
-          # );
-        };
-      }
-    );
+        specialArgs = { inherit inputs; };
+      };
+    });
 }

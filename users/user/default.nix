@@ -27,25 +27,6 @@
     ./xdg.nix
   ];
 
-  # nixpkgs.config.allowUnfreePredicate =
-  #   pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     # discord.nix
-  #     "discord"
-  #     "discord-unwrapped"
-  #
-  #     # llama-server.nix
-  #     "cccl"
-  #
-  #     "cuda_crt"
-  #     "cuda_nvcc"
-  #     "cuda_nvrtc"
-  #     "cuda_cudart"
-  #
-  #     "libnvvm"
-  #     "libcublas"
-  #   ];
-
   programs.home-manager.enable = true;
 
   home = {
