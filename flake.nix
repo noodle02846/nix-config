@@ -4,14 +4,23 @@
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
     systems = {
       url = "github:nix-systems/default/main";
       flake = false;
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+
+      inputs = {
+        flake-compat.follows = "";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -32,26 +41,32 @@
 
   outputs =
     inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (_: {
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.git-hooks.flakeModule
+      ];
+
       systems = import inputs.systems;
 
-      perSystem = { pkgs, ... }: {
+      perSystem = { config, pkgs, ... }: {
         devShells.default = pkgs.mkShellNoCC {
-          buildInputs = with pkgs; [
-            # Runners, LSP, Formatters, and Linters
+          shellHook = "${config.pre-commit.shellHook}";
 
-            nixd
-            nixfmt
-            statix
+          packages =
+            config.pre-commit.settings.enabledPackages
+            ++ (with pkgs; [
+              just
+              just-lsp
 
-            just
-            just-lsp
-
-            jq
-          ];
+              jq
+            ]);
         };
 
-        formatter = pkgs.nixfmt;
+        pre-commit.settings.hooks = {
+          deadnix.enable = true;
+          nixfmt.enable = true;
+          statix.enable = true;
+        };
       };
 
       flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
@@ -74,5 +89,5 @@
 
         specialArgs = { inherit inputs; };
       };
-    });
+    };
 }
