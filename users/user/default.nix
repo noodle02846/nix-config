@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ ... }: {
   imports = [
     # Modules
     ../../modules/home-manager/fonts.nix
@@ -21,7 +21,7 @@
     ../../modules/home-manager/programs/tor-browser.nix
     ../../modules/home-manager/programs/prismlauncher.nix
 
-    ../../modules/home-manager/services/llama-server.nix
+    # ../../modules/home-manager/services/llama-server.nix
 
     # User
     ./xdg.nix
