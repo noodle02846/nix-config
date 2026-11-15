@@ -11,6 +11,9 @@
 
       # Plymouth boot theme fix
       "plymouth.use-simpledrm"
+
+      # Swap GPT device fix
+      "systemd.swap=0"
     ];
 
     kernelModules = [
