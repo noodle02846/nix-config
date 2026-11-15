@@ -9,6 +9,11 @@
       flake = false;
     };
 
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
 
@@ -43,31 +48,60 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
+        inputs.treefmt.flakeModule
         inputs.git-hooks.flakeModule
       ];
 
       systems = import inputs.systems;
 
-      perSystem = { config, pkgs, ... }: {
-        devShells.default = pkgs.mkShellNoCC {
-          shellHook = "${config.pre-commit.shellHook}";
+      perSystem =
+        {
+          config,
+          lib,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShellNoCC {
+            shellHook = "${config.pre-commit.shellHook}";
 
-          packages =
-            config.pre-commit.settings.enabledPackages
-            ++ (with pkgs; [
-              just
-              just-lsp
+            nativeBuildInputs =
+              with pkgs;
+              [
+                # LSPs
+                nixd
+                just-lsp
+                bash-language-server
+              ]
+              ++ [
+                config.treefmt.build.wrapper
+              ]
+              ++ (lib.attrValues config.treefmt.build.programs);
+          };
 
-              jq
-            ]);
+          pre-commit.settings.hooks.treefmt.enable = true;
+
+          treefmt.programs = {
+            # Flake tooling
+            jq.enable = true;
+            just.enable = true;
+
+            # Markdown tooling
+            mdformat.enable = true;
+
+            # Shell tooling
+            shfmt.enable = true;
+            shellcheck = {
+              enable = true;
+              excludes = [ "*.envrc" ];
+            };
+
+            # Nix tooling
+            nixfmt.enable = true;
+            statix.enable = true;
+            deadnix.enable = true;
+          };
         };
-
-        pre-commit.settings.hooks = {
-          deadnix.enable = true;
-          nixfmt.enable = true;
-          statix.enable = true;
-        };
-      };
 
       flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
         modules = [

@@ -8,32 +8,32 @@ modules, plus supporting dotfiles and assets.
 
 ## 2. Guardrails
 
-* **NEVER** run any command, script, build, or test that targets this repository or its
+- **NEVER** run any command, script, build, or test that targets this repository or its
   files (e.g. `nix build`, `nh switch`, `nh home switch`, `nix flake check`, `just …`)
   without explicit, specific permission for that exact action.
-* **ALWAYS** follow the project structure below and reuse existing modules instead of
+- **ALWAYS** follow the project structure below and reuse existing modules instead of
   duplicating configuration. For any new host, user, or module, follow the existing
   split; propose structural changes to the operator before applying.
-* **NEVER** write, commit, log, or expose secrets, keys, tokens, or credentials in the
+- **NEVER** write, commit, log, or expose secrets, keys, tokens, or credentials in the
   repo — keep them external (e.g. `secrets.nix`, a passphrase store, or an out-of-repo path).
 
 ## 3. Project Architecture
 
 ### Root
 
-* `flake.nix` - Top-level flake (uses `flake-parts`). Defines the `desktop` nixos
+- `flake.nix` - Top-level flake (uses `flake-parts`). Defines the `desktop` nixos
   configuration and the `user` home-manager configuration.
-* `flake.lock` - Auto-generated lockfile.
-* `justfile` - Convenience commands: `update`, `check`, `home` (`nh home switch`),
+- `flake.lock` - Auto-generated lockfile.
+- `justfile` - Convenience commands: `update`, `check`, `home` (`nh home switch`),
   `switch` (`nh os switch`).
-* `.envrc` - direnv setup (`use flake`).
-* `LICENSE` - Repository license.
-* `config/` - Empty, currently unused (reserved).
-* `assets/` - Dotfiles and other assets.
+- `.envrc` - direnv setup (`use flake`).
+- `LICENSE` - Repository license.
+- `config/` - Empty, currently unused (reserved).
+- `assets/` - Dotfiles and other assets.
 
 ### `hosts/` - System host configurations
 
-* `hosts/desktop/` - The `desktop` host. `default.nix` is the entry point and uses
+- `hosts/desktop/` - The `desktop` host. `default.nix` is the entry point and uses
   `imports = []` to assemble per-topic files (`boot`, `console`, `environment`,
   `hardware`, `networking`, `security`, `time`, `users`) plus module imports from
   `modules/`.
@@ -42,8 +42,8 @@ modules, plus supporting dotfiles and assets.
 
 Split by target:
 
-* `modules/nixos/` - System (nixos) modules: `desktop/`, `programs/`, `services/`.
-* `modules/home-manager/` - Home-manager modules: `containers/`, `desktop/`,
+- `modules/nixos/` - System (nixos) modules: `desktop/`, `programs/`, `services/`.
+- `modules/home-manager/` - Home-manager modules: `containers/`, `desktop/`,
   `programs/`, `services/`, plus top-level `fonts.nix`.
 
 > Reusable modules must never contain a `default.nix` file or be made auto-importable
@@ -52,7 +52,7 @@ Split by target:
 
 ### `users/` - Per-user configurations
 
-* `users/svc/` - The `svc` system/service user (home-manager, drives `podman`/`gonic`).
+- `users/svc/` - The `svc` system/service user (home-manager, drives `podman`/`gonic`).
   Referenced by the flake as `users.svc`.
-* `users/user/` - The primary `user` home-manager config (`default.nix`, `xdg.nix`).
+- `users/user/` - The primary `user` home-manager config (`default.nix`, `xdg.nix`).
   Referenced by the flake as the `user` home configuration.
