@@ -1,5 +1,6 @@
 { lib, pkgs, ... }: {
   imports = [
+    ./sops.nix
     ./boot.nix
     ./swap.nix
     ./time.nix

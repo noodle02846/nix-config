@@ -28,6 +28,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,6 +77,10 @@
                 nixd
                 just-lsp
                 bash-language-server
+
+                # Secrets tooling
+                age
+                sops
               ]
               ++ [
                 config.treefmt.build.wrapper
@@ -106,6 +115,7 @@
       flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/desktop
+          inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
