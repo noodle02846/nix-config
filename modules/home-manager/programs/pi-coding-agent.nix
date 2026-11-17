@@ -18,8 +18,21 @@
 
     settings = {
       # Providers
-      defaultProvider = "llama.cpp";
-      defaultThinkingLevel = "medium";
+      defaultProvider = "tinfoil";
+      defaultModel = "inkling-2-small";
+      defaultThinkingLevel = "high";
+
+      enabledModels = [
+        "glm-5-3"
+        "kimi-k3-1-pro"
+        "inkling-2-small"
+        "deepseek-v4-1-flash"
+      ];
+
+      # Packages
+      packages = [
+        "npm:@tinfoilsh/pi-provider"
+      ];
 
       # UI
       theme = "dark";
