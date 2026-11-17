@@ -48,7 +48,7 @@
     settings = {
       # Replace default "*", allowing all users
       allowed-users = [
-        "@wheel"
+        "user"
         "svc"
       ];
 
