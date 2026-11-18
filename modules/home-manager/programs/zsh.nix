@@ -10,7 +10,6 @@
     autosuggestion.enable = true;
 
     shellAliases = {
-      "hm" = "home-manager";
       "cls" = "clear";
     };
 
@@ -26,7 +25,7 @@
     history = {
       extended = true;
       expireDuplicatesFirst = true;
-      save = 100;
+      save = 1000;
     };
 
     oh-my-zsh = {
@@ -38,19 +37,10 @@
         "rust"
       ];
     };
+  };
 
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "spaceship-prompt/spaceship-prompt";
-          tags = [
-            "use:spaceship.zsh"
-            "from:github"
-            "as:theme"
-          ];
-        }
-      ];
-    };
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
