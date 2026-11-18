@@ -29,6 +29,7 @@ _: {
       interfaces."eno1" = {
         allowedUDPPorts = [
           # 7359 # Jellyfin discovery port
+          25565 # Minecraft UDP port
         ];
 
         allowedTCPPorts = [
@@ -38,6 +39,7 @@ _: {
           # 8096 # Jellyfin web port
           12100 # Custom gonic (Open Subsonic) server port
           12110 # Custom silverbullet (Markdown wiki) server port
+          25565 # Minecraft TCP port
         ];
       };
     };
