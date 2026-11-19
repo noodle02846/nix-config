@@ -52,86 +52,13 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.treefmt.flakeModule
-        inputs.git-hooks.flakeModule
-      ];
-
       systems = import inputs.systems;
 
-      perSystem =
-        {
-          config,
-          lib,
-          pkgs,
-          ...
-        }:
-        {
-          devShells.default = pkgs.mkShellNoCC {
-            shellHook = "${config.pre-commit.shellHook}";
-
-            nativeBuildInputs =
-              with pkgs;
-              [
-                # LSPs
-                nixd
-                just-lsp
-                bash-language-server
-
-                # Secrets tooling
-                age
-                sops
-              ]
-              ++ [
-                config.treefmt.build.wrapper
-              ]
-              ++ (lib.attrValues config.treefmt.build.programs);
-          };
-
-          pre-commit.settings.hooks.treefmt.enable = true;
-
-          treefmt.programs = {
-            # Flake tooling
-            jq.enable = true;
-            just.enable = true;
-
-            # Markdown tooling
-            mdformat.enable = true;
-
-            # Shell tooling
-            shfmt.enable = true;
-            shellcheck = {
-              enable = true;
-              excludes = [ "*.envrc" ];
-            };
-
-            # Nix tooling
-            nixfmt.enable = true;
-            statix.enable = true;
-            deadnix.enable = true;
-          };
-        };
-
-      flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hosts/desktop
-          inputs.sops.nixosModules.sops
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-
-              users = {
-                svc = ./users/svc;
-                user = ./users/user;
-              };
-            };
-          }
-        ];
-
-        specialArgs = { inherit inputs; };
-      };
+      # Taken from: https://codeberg.org/SebastianStork/nixos-config/src/commit/be5bdf4f92caf373e2274ed5d06718fa04acd0c3/flake.nix#L102
+      imports =
+        ./flake
+        |> builtins.readDir
+        |> builtins.attrNames
+        |> map (name: ./flake/${name});
     };
 }
