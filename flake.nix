@@ -28,7 +28,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    sops-nix = {
+    sops = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -115,7 +115,7 @@
       flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/desktop
-          inputs.sops-nix.nixosModules.sops
+          inputs.sops.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {

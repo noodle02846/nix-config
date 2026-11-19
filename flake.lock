@@ -107,12 +107,12 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "sops-nix": "sops-nix",
+        "sops": "sops",
         "systems": "systems",
         "treefmt": "treefmt"
       }
     },
-    "sops-nix": {
+    "sops": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
