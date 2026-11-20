@@ -1,5 +1,7 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    tealdeer
-  ];
+_: {
+  programs.tealdeer = {
+    enable = true;
+    enableAutoUpdates = true;
+    settings.updates.auto_update.auto_update_interval_hours = 24;
+  };
 }
