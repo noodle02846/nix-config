@@ -1,8 +1,4 @@
-{ config, pkgs, ... }: {
-  home.packages = with pkgs; [
-    git
-  ];
-
+{ config, ... }: {
   programs.git = {
     enable = true;
 

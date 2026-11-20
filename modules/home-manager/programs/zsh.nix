@@ -1,8 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    zsh
-  ];
-
+_: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;

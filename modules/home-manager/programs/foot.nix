@@ -1,8 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    foot
-  ];
-
+_: {
   # TODO: Evaluate using Ghostty or Alacritty instead of foot
   programs.foot = {
     enable = true;

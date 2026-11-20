@@ -1,8 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    posting
-  ];
-
+_: {
   programs.posting = {
     enable = true;
 

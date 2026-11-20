@@ -1,8 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    prismlauncher
-  ];
-
+_: {
   programs.prismlauncher = {
     enable = true;
   };
