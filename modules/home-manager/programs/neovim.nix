@@ -53,11 +53,8 @@
       servers = {
         nixd.enable = true;
         zls.enable = true;
-        vls.enable = true;
         just.enable = true;
-        qmlls.enable = true;
         gopls.enable = true;
-        gleam.enable = true;
         luau_lsp.enable = true;
         rust_analyzer.enable = true;
       };
@@ -65,10 +62,7 @@
 
     # Plugin settings
     plugins = {
-      # TODO: Review these two, as they are the same thing on the nixvim wiki
-      # WARN: Having both enabled leads to evaluation errors
-      lsp.enable = true;
-      # lspconfig.enable = true;
+      lspconfig.enable = true;
 
       lsp-lines.enable = true;
       lsp-status.enable = true;
@@ -114,9 +108,6 @@
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
             go = [ "gofmt" ];
-            v = [ "v" ];
-            gleam = [ "gleam" ];
-            qml = [ "qmlformat" ];
             just = [ "just" ];
           };
         };
