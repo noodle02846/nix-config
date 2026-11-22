@@ -64,10 +64,6 @@
     plugins = {
       lspconfig.enable = true;
 
-      lsp-lines.enable = true;
-      lsp-status.enable = true;
-      lsp-progress.enable = true;
-
       todo-comments.enable = true;
 
       lualine = {
