@@ -56,16 +56,16 @@ _: {
       };
 
       nightlight = {
-        enable = true;
+        enabled = true;
 
-        temperature_day = 6000;
-        temperature_night = 4500;
+        temperature_day = 5500;
+        temperature_night = 3000;
       };
 
       weather = {
         enabled = true;
-        refresh_minutes = 5;
-        units = "imperial";
+        refresh_minutes = 15;
+        unit = "imperial";
         effects = true;
       };
     };
