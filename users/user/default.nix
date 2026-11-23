@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   imports = [
     # Modules
     ../../modules/home-manager/fonts.nix
@@ -20,9 +20,6 @@
     ../../modules/home-manager/programs/chromium.nix
     ../../modules/home-manager/programs/tor-browser.nix
     ../../modules/home-manager/programs/prismlauncher.nix
-
-    # User
-    ./xdg.nix
   ];
 
   programs.home-manager.enable = true;
@@ -31,5 +28,31 @@
     username = "user";
     homeDirectory = "/home/user";
     stateVersion = "26.05";
+  };
+
+  xdg = {
+    enable = true;
+
+    userDirs =
+      let
+        homeDir = "${config.home.homeDirectory}";
+      in
+      {
+        enable = true;
+        createDirectories = true;
+
+        desktop = "${homeDir}/desktop";
+
+        projects = "${homeDir}/projects";
+        documents = "${homeDir}/documents";
+        templates = "${homeDir}/templates";
+
+        publicShare = "${homeDir}/public";
+        download = "${homeDir}/downloads";
+
+        music = "${homeDir}/music";
+        pictures = "${homeDir}/pictures";
+        videos = "${homeDir}/videos";
+      };
   };
 }
