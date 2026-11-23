@@ -9,19 +9,7 @@
       flake = false;
     };
 
-    treefmt = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-
-      inputs = {
-        flake-compat.follows = "";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    import-tree.url = "github:denful/import-tree";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -38,6 +26,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+
+      inputs = {
+        flake-compat.follows = "";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
 
@@ -49,16 +51,5 @@
     };
   };
 
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-
-      # Taken from: https://codeberg.org/SebastianStork/nixos-config/src/commit/be5bdf4f92caf373e2274ed5d06718fa04acd0c3/flake.nix#L102
-      imports =
-        ./flake
-        |> builtins.readDir
-        |> builtins.attrNames
-        |> map (name: ./flake/${name});
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./flake);
 }
