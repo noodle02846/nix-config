@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ lib, ... }: {
   imports = [
     ./sops.nix
     ./boot.nix
@@ -26,8 +26,6 @@
   ];
 
   nix = {
-    package = pkgs.lix;
-
     gc = {
       automatic = true;
       persistent = true;
@@ -59,7 +57,7 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operator"
+        "pipe-operators"
       ];
     };
   };
