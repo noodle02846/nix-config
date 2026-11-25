@@ -63,5 +63,11 @@
     };
   };
 
+  # HACK: Move declaration to system module to bypass `useGlobalPkgs`
+  nixpkgs.config.allowUnfreePackages = [
+    "discord"
+    "discord-unwrapped"
+  ];
+
   system.stateVersion = "26.05";
 }
