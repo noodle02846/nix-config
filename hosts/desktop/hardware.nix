@@ -7,12 +7,6 @@
     # Previously set in hardware-configuration.nix
     cpu.intel.updateMicrocode = lib.mkForce true;
 
-    # Enable NVIDIA drivers
-    nvidia = {
-      open = true;
-      modesetting.enable = true;
-    };
-
     # Enable Corsair drivers
     ckb-next = {
       enable = true;
