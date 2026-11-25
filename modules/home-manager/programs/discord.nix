@@ -3,8 +3,7 @@
     enable = true;
     package = pkgs.discord.override {
       withOpenASAR = true;
-      # HACK: Remove vencord until upstream fix for no startup is fixed
-      withVencord = false;
+      withVencord = true;
     };
 
     settings = {
@@ -39,4 +38,9 @@
       };
     };
   };
+
+  nixpkgs.config.allowUnfreePackages = [
+    "discord"
+    "discord-unwrapped"
+  ];
 }
