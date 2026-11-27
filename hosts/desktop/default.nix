@@ -27,6 +27,10 @@ _: {
   noodle = {
     hardware = {
       nvidia.enable = true;
+      corsair = {
+        enable = true;
+        group = 100; # TODO: Switch to specifically declared ckb-next daemon gorup
+      };
     };
   };
 

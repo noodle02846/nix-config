@@ -6,13 +6,6 @@
 
     # Previously set in hardware-configuration.nix
     cpu.intel.updateMicrocode = lib.mkForce true;
-
-    # Enable Corsair drivers
-    ckb-next = {
-      enable = true;
-
-      gid = 100;
-    };
   };
 
   # Automatically generated hardware configuration:
