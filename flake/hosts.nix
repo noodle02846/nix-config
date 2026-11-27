@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: {
   flake.nixosConfigurations = {
     desktop = inputs.nixpkgs.lib.nixosSystem {
       modules = [
@@ -17,7 +17,8 @@
             };
           };
         }
-      ];
+      ]
+      ++ (builtins.attrValues config.flake.modules.nixos);
 
       specialArgs = { inherit inputs; };
     };

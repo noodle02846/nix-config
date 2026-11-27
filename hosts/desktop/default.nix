@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   imports = [
     ./sops.nix
     ./boot.nix
@@ -12,8 +12,6 @@
     ./networking.nix
     ./environment.nix
 
-    ../../modules/nixos/hardware/nvidia.nix
-
     ../../modules/nixos/desktop/uwsm.nix
     ../../modules/nixos/desktop/hyprland.nix
 
@@ -25,6 +23,12 @@
     ../../modules/nixos/services/mullvad.nix
     ../../modules/nixos/services/pipewire.nix
   ];
+
+  noodle = {
+    hardware = {
+      nvidia.enable = true;
+    };
+  };
 
   nix = {
     gc = {
